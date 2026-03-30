@@ -24,7 +24,7 @@ export function AppShell({
   const messages = getMessages(locale);
 
   return (
-    <main className="safe-px safe-pb mx-auto flex min-h-screen w-full max-w-md flex-col py-5 pb-28">
+    <main className="safe-px safe-pb mx-auto flex min-h-screen w-full max-w-md flex-col py-5 pb-40">
       <header className="mb-5 flex flex-col gap-4">
         <div className="flex items-start justify-between gap-3">
           <div>
