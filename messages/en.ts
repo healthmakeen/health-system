@@ -26,6 +26,12 @@ const enMessages = {
     save: "Save",
     settings: "Settings",
   },
+  nav: {
+    home: "Home",
+    logout: "Logout",
+    profile: "Profile",
+    reports: "Reports",
+  },
   dashboard: {
     addFirstEntry: "Add the first entry",
     emptyDescription:
@@ -125,6 +131,16 @@ const enMessages = {
       "Set up the patient profile once so daily readings stay organized.",
     gender: "Gender",
     title: "Patient Setup",
+  },
+  reports: {
+    attentionDays: "Needs attention",
+    averagePulse: "Average pulse",
+    description: "Quick view of recent patient trends and latest health status.",
+    empty: "Reports will appear after you save a few daily entries.",
+    latestSummary: "Latest reading",
+    stableDays: "Stable days",
+    title: "Reports",
+    totalEntries: "Total entries",
   },
   validations: {
     bloodPressureRelation: "Diastolic pressure should be lower than systolic.",

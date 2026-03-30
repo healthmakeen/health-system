@@ -26,6 +26,12 @@ const trMessages = {
     save: "Kaydet",
     settings: "Ayarlar",
   },
+  nav: {
+    home: "Ana Sayfa",
+    logout: "Çıkış",
+    profile: "Profil",
+    reports: "Raporlar",
+  },
   dashboard: {
     addFirstEntry: "İlk kaydı ekle",
     emptyDescription: "Günlük ölçümler kaydedildikten sonra burada görünür.",
@@ -124,6 +130,16 @@ const trMessages = {
       "Günlük ölçümleri düzenli tutmak için hasta profilini bir kez oluşturun.",
     gender: "Cinsiyet",
     title: "Hasta Kurulumu",
+  },
+  reports: {
+    attentionDays: "Takip gereken gün",
+    averagePulse: "Ortalama nabız",
+    description: "Son hasta durumu ve son ölçümlerin kısa özeti.",
+    empty: "Birkaç günlük ölçüm kaydettikten sonra raporlar burada görünür.",
+    latestSummary: "Son ölçüm",
+    stableDays: "Stabil gün",
+    title: "Raporlar",
+    totalEntries: "Toplam kayıt",
   },
   validations: {
     bloodPressureRelation: "Diyastolik değer sistolik değerden düşük olmalıdır.",

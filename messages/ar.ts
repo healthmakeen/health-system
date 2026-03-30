@@ -25,6 +25,12 @@ const arMessages = {
     save: "حفظ",
     settings: "الإعدادات",
   },
+  nav: {
+    home: "الرئيسية",
+    logout: "خروج",
+    profile: "الملف",
+    reports: "التقارير",
+  },
   dashboard: {
     addFirstEntry: "أضف أول قراءة",
     emptyDescription: "ستظهر القراءات اليومية هنا بعد الحفظ.",
@@ -121,6 +127,16 @@ const arMessages = {
     description: "أدخل بيانات المريض مرة واحدة لتنظيم القراءات اليومية.",
     gender: "الجنس",
     title: "إعداد المريض",
+  },
+  reports: {
+    attentionDays: "أيام تحتاج متابعة",
+    averagePulse: "متوسط النبض",
+    description: "عرض سريع لآخر حالة المريض واتجاه القراءات الأخيرة.",
+    empty: "ستظهر التقارير بعد حفظ بعض القراءات اليومية.",
+    latestSummary: "أحدث قراءة",
+    stableDays: "أيام مستقرة",
+    title: "التقارير",
+    totalEntries: "إجمالي القراءات",
   },
   validations: {
     bloodPressureRelation: "يجب أن يكون الضغط الانبساطي أقل من الضغط الانقباضي.",
