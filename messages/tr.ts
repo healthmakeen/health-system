@@ -24,6 +24,7 @@ const trMessages = {
     loading: "Yükleniyor...",
     notes: "Notlar",
     save: "Kaydet",
+    settings: "Ayarlar",
   },
   dashboard: {
     addFirstEntry: "İlk kaydı ekle",
@@ -84,6 +85,22 @@ const trMessages = {
     locale: "Dil",
     statusNeedsAttention: "Takip Gerekli",
     statusStable: "Stabil",
+  },
+  settings: {
+    confirmPassword: "Yeni şifreyi doğrula",
+    description: "Bakım veren bilgilerini ve hesap güvenliğini yönetin.",
+    emailHelp: "Gerekirse e-posta değiştirme özelliği daha sonra eklenebilir.",
+    newPassword: "Yeni şifre",
+    passwordDescription: "En az 6 karakterden oluşan güçlü bir şifre kullanın.",
+    passwordMismatch: "Şifreler eşleşmiyor.",
+    passwordSaved: "Şifre başarıyla güncellendi.",
+    passwordTitle: "Şifre değiştir",
+    profileDescription: "Bakım veren adını ve dil tercihini güncelleyin.",
+    profileSaved: "Profil başarıyla güncellendi.",
+    profileTitle: "Bakım veren profili",
+    savePassword: "Şifreyi kaydet",
+    saveProfile: "Profili kaydet",
+    title: "Ayarlar",
   },
   options: {
     abdomen: {

@@ -11,6 +11,23 @@ export const authSchema = z.object({
   password: z.string().min(6),
 });
 
+export const profileSettingsSchema = z.object({
+  full_name: z.string().trim().min(2).max(120),
+  locale: localeSchema,
+  profile_locale: localeSchema,
+});
+
+export const passwordSettingsSchema = z
+  .object({
+    confirm_password: z.string().min(6),
+    locale: localeSchema,
+    password: z.string().min(6),
+  })
+  .refine((values) => values.password === values.confirm_password, {
+    message: "passwordMismatch",
+    path: ["confirm_password"],
+  });
+
 export const patientSchema = z.object({
   birth_date: z.string().trim().optional(),
   full_name: z.string().trim().min(2).max(120),

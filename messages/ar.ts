@@ -23,6 +23,7 @@ const arMessages = {
     loading: "جارٍ التحميل...",
     notes: "ملاحظات",
     save: "حفظ",
+    settings: "الإعدادات",
   },
   dashboard: {
     addFirstEntry: "أضف أول قراءة",
@@ -82,6 +83,22 @@ const arMessages = {
     locale: "اللغة",
     statusNeedsAttention: "تحتاج متابعة",
     statusStable: "مستقرة",
+  },
+  settings: {
+    confirmPassword: "تأكيد كلمة المرور الجديدة",
+    description: "إدارة بيانات مقدم الرعاية وأمان الحساب.",
+    emailHelp: "يمكن إضافة تغيير البريد الإلكتروني لاحقًا إذا لزم الأمر.",
+    newPassword: "كلمة المرور الجديدة",
+    passwordDescription: "استخدم كلمة مرور قوية لا تقل عن 6 أحرف.",
+    passwordMismatch: "كلمتا المرور غير متطابقتين.",
+    passwordSaved: "تم تحديث كلمة المرور بنجاح.",
+    passwordTitle: "تغيير كلمة المرور",
+    profileDescription: "حدّث اسم مقدم الرعاية وتفضيل اللغة.",
+    profileSaved: "تم تحديث الملف الشخصي بنجاح.",
+    profileTitle: "ملف مقدم الرعاية",
+    savePassword: "حفظ كلمة المرور",
+    saveProfile: "حفظ الملف الشخصي",
+    title: "الإعدادات",
   },
   options: {
     abdomen: {

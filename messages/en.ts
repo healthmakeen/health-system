@@ -24,6 +24,7 @@ const enMessages = {
     loading: "Loading...",
     notes: "Notes",
     save: "Save",
+    settings: "Settings",
   },
   dashboard: {
     addFirstEntry: "Add the first entry",
@@ -85,6 +86,22 @@ const enMessages = {
     locale: "Language",
     statusStable: "Stable",
     statusNeedsAttention: "Needs Attention",
+  },
+  settings: {
+    confirmPassword: "Confirm new password",
+    description: "Manage caregiver details and account security.",
+    emailHelp: "Email changes can be added later if needed.",
+    newPassword: "New password",
+    passwordDescription: "Use a strong password with at least 6 characters.",
+    passwordMismatch: "Passwords do not match.",
+    passwordSaved: "Password updated successfully.",
+    passwordTitle: "Change password",
+    profileDescription: "Update the caregiver name and language preference.",
+    profileSaved: "Profile updated successfully.",
+    profileTitle: "Caregiver profile",
+    savePassword: "Save password",
+    saveProfile: "Save profile",
+    title: "Settings",
   },
   options: {
     abdomen: {

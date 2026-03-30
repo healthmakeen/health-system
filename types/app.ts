@@ -30,3 +30,8 @@ export type FormState = {
   message?: string;
   fieldErrors?: Record<string, string>;
 };
+
+export type SettingsFormValues = {
+  full_name: string;
+  locale: Locale;
+};

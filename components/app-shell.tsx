@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 
 import { signOutAction } from "@/app/[locale]/actions";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { SubmitButton } from "@/components/submit-button";
-import { getMessages, translate } from "@/lib/locales";
+import { getLocalizedPath, getMessages, translate } from "@/lib/locales";
 import type { Locale } from "@/types/app";
 
 type AppShellProps = {
@@ -43,13 +44,21 @@ export function AppShell({
         </div>
 
         <form action={signOutAction} className="self-start">
-          <input type="hidden" name="locale" value={locale} />
-          <SubmitButton
-            className="min-h-11 bg-white px-4 text-sm text-[var(--color-text)] ring-1 ring-[var(--color-border)]"
-            pendingLabel={translate(messages, "common.loading")}
-          >
-            {translate(messages, "auth.logout")}
-          </SubmitButton>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href={getLocalizedPath(locale, "/settings")}
+              className="inline-flex min-h-11 items-center rounded-2xl bg-white px-4 text-sm font-semibold text-[var(--color-text)] ring-1 ring-[var(--color-border)]"
+            >
+              {translate(messages, "settings.title")}
+            </Link>
+            <input type="hidden" name="locale" value={locale} />
+            <SubmitButton
+              className="min-h-11 bg-white px-4 text-sm text-[var(--color-text)] ring-1 ring-[var(--color-border)]"
+              pendingLabel={translate(messages, "common.loading")}
+            >
+              {translate(messages, "auth.logout")}
+            </SubmitButton>
+          </div>
         </form>
       </header>
 

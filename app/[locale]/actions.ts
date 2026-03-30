@@ -18,7 +18,9 @@ import {
   authSchema,
   emptyToNull,
   entrySchema,
+  passwordSettingsSchema,
   patientSchema,
+  profileSettingsSchema,
 } from "@/lib/validators";
 import type { Database } from "@/types/database";
 import type { FormState, Locale } from "@/types/app";
@@ -189,6 +191,104 @@ export async function createPatientAction(
 
   revalidatePath(getLocalizedPath(locale, "/dashboard"));
   redirect(getLocalizedPath(locale, "/dashboard"));
+}
+
+export async function updateProfileAction(
+  previousState: FormState = idleState,
+  formData: FormData,
+): Promise<FormState> {
+  void previousState;
+  const locale = getLocaleFromValue(formData.get("locale"));
+  const messages = getMessages(locale);
+
+  const parsed = profileSettingsSchema.safeParse({
+    full_name: formData.get("full_name"),
+    locale,
+    profile_locale: formData.get("profile_locale"),
+  });
+
+  if (!parsed.success) {
+    return buildErrorState(locale, {
+      full_name: translate(messages, "errors.required"),
+    });
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect(getLocalizedPath(locale, "/login"));
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const profilesTable = supabase.from("profiles") as any;
+  const { error } = await profilesTable
+    .update({
+      full_name: parsed.data.full_name,
+      locale: parsed.data.profile_locale,
+    })
+    .eq("id", user.id);
+
+  if (error) {
+    return {
+      message: error.message,
+      status: "error",
+    };
+  }
+
+  revalidatePath(getLocalizedPath(locale, "/dashboard"));
+  revalidatePath(getLocalizedPath(locale, "/settings"));
+
+  return {
+    status: "success",
+  };
+}
+
+export async function updatePasswordAction(
+  previousState: FormState = idleState,
+  formData: FormData,
+): Promise<FormState> {
+  void previousState;
+  const locale = getLocaleFromValue(formData.get("locale"));
+  const messages = getMessages(locale);
+
+  const parsed = passwordSettingsSchema.safeParse({
+    confirm_password: formData.get("confirm_password"),
+    locale,
+    password: formData.get("password"),
+  });
+
+  if (!parsed.success) {
+    const fieldErrors: Record<string, string> = {};
+
+    for (const issue of parsed.error.issues) {
+      const field = String(issue.path[0] ?? "password");
+      fieldErrors[field] =
+        issue.message === "passwordMismatch"
+          ? translate(messages, "settings.passwordMismatch")
+          : translate(messages, "errors.passwordLength");
+    }
+
+    return buildErrorState(locale, fieldErrors);
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.updateUser({
+    password: parsed.data.password,
+  });
+
+  if (error) {
+    return {
+      message: error.message,
+      status: "error",
+    };
+  }
+
+  return {
+    status: "success",
+  };
 }
 
 export async function saveEntryAction(
