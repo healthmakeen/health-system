@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import {
@@ -45,6 +46,26 @@ function buildErrorState(locale: Locale, fieldErrors?: Record<string, string>) {
     message: translate(messages, "errors.generic"),
     fieldErrors,
   };
+}
+
+async function getRequestOrigin() {
+  const headerStore = await headers();
+  const origin = headerStore.get("origin");
+
+  if (origin) {
+    return origin;
+  }
+
+  const forwardedProto = headerStore.get("x-forwarded-proto");
+  const forwardedHost = headerStore.get("x-forwarded-host");
+  const host = forwardedHost ?? headerStore.get("host");
+  const protocol = forwardedProto ?? "https";
+
+  if (host) {
+    return `${protocol}://${host}`;
+  }
+
+  return "http://localhost:3000";
 }
 
 function getRedirectPath(locale: Locale, patientExists: boolean) {
@@ -138,6 +159,45 @@ export async function signOutAction(formData: FormData) {
 
   await supabase.auth.signOut();
   redirect(getLocalizedPath(locale, "/login"));
+}
+
+export async function requestPasswordResetAction(
+  previousState: FormState = idleState,
+  formData: FormData,
+): Promise<FormState> {
+  void previousState;
+  const locale = getLocaleFromValue(formData.get("locale"));
+  const messages = getMessages(locale);
+  const email = formData.get("email");
+
+  const parsed = authSchema.pick({ email: true, locale: true }).safeParse({
+    email,
+    locale,
+  });
+
+  if (!parsed.success) {
+    return buildErrorState(locale, {
+      email: translate(messages, "errors.invalidEmail"),
+    });
+  }
+
+  const origin = await getRequestOrigin();
+  const supabase = await createClient();
+  const { error } = await supabase.auth.resetPasswordForEmail(parsed.data.email, {
+    redirectTo: `${origin}${getLocalizedPath(locale, "/reset-password")}`,
+  });
+
+  if (error) {
+    return {
+      message: error.message,
+      status: "error",
+    };
+  }
+
+  return {
+    message: translate(messages, "auth.resetSent"),
+    status: "success",
+  };
 }
 
 export async function createPatientAction(

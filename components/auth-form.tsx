@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useState } from "react";
 
 import { authAction } from "@/app/[locale]/actions";
@@ -75,6 +76,14 @@ export function AuthForm() {
             <p className="form-error mt-2 text-sm">
               {state.fieldErrors.password}
             </p>
+          ) : null}
+          {mode === "login" ? (
+            <Link
+              href={`/${locale}/forgot-password`}
+              className="mt-3 inline-flex text-sm font-semibold text-[var(--color-primary)]"
+            >
+              {t("auth.forgotPassword")}
+            </Link>
           ) : null}
         </div>
       </div>

@@ -1,9 +1,21 @@
 const enMessages = {
   auth: {
+    backToLogin: "Back to login",
+    forgotPassword: "Forgot password?",
+    forgotPasswordHelp:
+      "Enter your email and we will send you a secure link to reset your password.",
     helper: "Simple and secure caregiver sign in.",
     login: "Login",
     logout: "Logout",
     password: "Password",
+    passwordResetSuccess: "Password updated successfully. You can now log in.",
+    resetPasswordHelp: "Choose a new password for your account.",
+    resetPasswordTitle: "Reset password",
+    resetPasswordWaiting:
+      "Open the email link first, then return here to set your new password.",
+    resetSent: "If that email exists, a password reset link has been sent.",
+    saveNewPassword: "Save new password",
+    sendResetLink: "Send reset link",
     signup: "Create account",
     subtitle:
       "Use your email and password to access the patient follow-up dashboard.",

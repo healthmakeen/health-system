@@ -1,9 +1,23 @@
 const trMessages = {
   auth: {
+    backToLogin: "Girişe dön",
+    forgotPassword: "Şifremi unuttum",
+    forgotPasswordHelp:
+      "E-postanızı girin, size şifrenizi sıfırlamak için güvenli bir bağlantı gönderelim.",
     helper: "Bakım veren için basit ve güvenli giriş.",
     login: "Giriş Yap",
     logout: "Çıkış Yap",
     password: "Şifre",
+    passwordResetSuccess:
+      "Şifre başarıyla güncellendi. Artık giriş yapabilirsiniz.",
+    resetPasswordHelp: "Hesabınız için yeni bir şifre seçin.",
+    resetPasswordTitle: "Şifre sıfırla",
+    resetPasswordWaiting:
+      "Önce e-postadaki bağlantıyı açın, sonra yeni şifreyi belirlemek için buraya dönün.",
+    resetSent:
+      "Bu e-posta varsa, şifre sıfırlama bağlantısı gönderildi.",
+    saveNewPassword: "Yeni şifreyi kaydet",
+    sendResetLink: "Sıfırlama bağlantısı gönder",
     signup: "Hesap Oluştur",
     subtitle:
       "Hasta takip paneline erişmek için e-posta ve şifrenizi kullanın.",
