@@ -85,7 +85,7 @@ export default async function DashboardPage({
 
         <Link
           href={getLocalizedPath(locale, "/dashboard/entries/new")}
-          className="mt-5 flex min-h-13 w-full items-center justify-center rounded-2xl bg-[var(--color-primary)] px-5 text-base font-semibold text-white"
+          className="mt-5 flex min-h-13 w-full items-center justify-center rounded-2xl bg-[var(--color-primary)] px-5 text-base font-semibold !text-white"
         >
           {translate(messages, "common.addEntry")}
         </Link>

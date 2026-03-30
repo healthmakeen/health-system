@@ -22,7 +22,7 @@ export function SubmitButton({
       type="submit"
       disabled={pending}
       className={cn(
-        "min-h-13 rounded-2xl bg-[var(--color-primary)] px-5 text-base font-semibold text-white transition hover:bg-[var(--color-primary-strong)] disabled:opacity-60",
+        "min-h-13 rounded-2xl bg-[var(--color-primary)] px-5 text-base font-semibold !text-white transition hover:bg-[var(--color-primary-strong)] disabled:opacity-60",
         className,
       )}
     >

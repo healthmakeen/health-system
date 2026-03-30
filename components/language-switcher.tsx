@@ -32,7 +32,7 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
             className={cn(
               "rounded-full px-3 py-2 text-sm font-semibold uppercase transition",
               currentLocale === locale
-                ? "bg-[var(--color-primary)] text-white"
+                ? "bg-[var(--color-primary)] !text-white"
                 : "text-[var(--color-text-soft)]",
             )}
           >

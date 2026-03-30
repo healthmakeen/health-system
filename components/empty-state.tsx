@@ -23,7 +23,7 @@ export function EmptyState({ locale }: EmptyStateProps) {
       </p>
       <Link
         href={getLocalizedPath(locale, "/dashboard/entries/new")}
-        className="mt-5 inline-flex min-h-12 items-center justify-center rounded-2xl bg-[var(--color-primary)] px-5 font-semibold text-white"
+        className="mt-5 inline-flex min-h-12 items-center justify-center rounded-2xl bg-[var(--color-primary)] px-5 font-semibold !text-white"
       >
         {translate(messages, "dashboard.addFirstEntry")}
       </Link>
