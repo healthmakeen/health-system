@@ -58,6 +58,20 @@ export function SettingsForm({ locale, patient, profile }: SettingsFormProps) {
               type="text"
             />
 
+            <Field
+              defaultValue={patient.doctor_name ?? ""}
+              label={t("patientSetup.doctorName")}
+              name="doctor_name"
+              type="text"
+            />
+
+            <Field
+              defaultValue={patient.hospital_name ?? ""}
+              label={t("patientSetup.hospitalName")}
+              name="hospital_name"
+              type="text"
+            />
+
             <div>
               <label className="mb-2 block text-sm font-semibold">
                 {t("patientSetup.birthDate")}{" "}

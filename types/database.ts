@@ -116,8 +116,10 @@ export interface Database {
         Row: {
           birth_date: string | null;
           created_at: string;
+          doctor_name: string | null;
           full_name: string;
           gender: "female" | "male" | null;
+          hospital_name: string | null;
           id: string;
           updated_at: string;
           user_id: string;
@@ -125,8 +127,10 @@ export interface Database {
         Insert: {
           birth_date?: string | null;
           created_at?: string;
+          doctor_name?: string | null;
           full_name: string;
           gender?: "female" | "male" | null;
+          hospital_name?: string | null;
           id?: string;
           updated_at?: string;
           user_id: string;
@@ -134,8 +138,10 @@ export interface Database {
         Update: {
           birth_date?: string | null;
           created_at?: string;
+          doctor_name?: string | null;
           full_name?: string;
           gender?: "female" | "male" | null;
+          hospital_name?: string | null;
           id?: string;
           updated_at?: string;
           user_id?: string;

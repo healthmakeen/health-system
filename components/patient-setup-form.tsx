@@ -53,6 +53,38 @@ export function PatientSetupForm() {
 
         <div>
           <label className="mb-2 block text-sm font-semibold">
+            {t("patientSetup.doctorName")}{" "}
+            <span className="text-[var(--color-text-soft)]">
+              ({t("form.optional")})
+            </span>
+          </label>
+          <div className="field-shell rounded-2xl px-4 py-3">
+            <input
+              type="text"
+              name="doctor_name"
+              className="w-full bg-transparent outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-semibold">
+            {t("patientSetup.hospitalName")}{" "}
+            <span className="text-[var(--color-text-soft)]">
+              ({t("form.optional")})
+            </span>
+          </label>
+          <div className="field-shell rounded-2xl px-4 py-3">
+            <input
+              type="text"
+              name="hospital_name"
+              className="w-full bg-transparent outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-semibold">
             {t("patientSetup.gender")}{" "}
             <span className="text-[var(--color-text-soft)]">
               ({t("form.optional")})

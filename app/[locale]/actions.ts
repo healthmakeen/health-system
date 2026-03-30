@@ -149,8 +149,10 @@ export async function createPatientAction(
   const messages = getMessages(locale);
   const parsed = patientSchema.safeParse({
     birth_date: formData.get("birth_date"),
+    doctor_name: formData.get("doctor_name"),
     full_name: formData.get("full_name"),
     gender: formData.get("gender") || undefined,
+    hospital_name: formData.get("hospital_name"),
     locale,
   });
 
@@ -172,8 +174,10 @@ export async function createPatientAction(
   const birthDate = emptyToNull(parsed.data.birth_date);
   const patientPayload: Database["public"]["Tables"]["patients"]["Insert"] = {
     birth_date: birthDate,
+    doctor_name: emptyToNull(parsed.data.doctor_name),
     full_name: parsed.data.full_name,
     gender: parsed.data.gender ?? null,
+    hospital_name: emptyToNull(parsed.data.hospital_name),
     user_id: user.id,
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -303,8 +307,10 @@ export async function updatePatientProfileAction(
 
   const parsed = patientSettingsSchema.safeParse({
     birth_date: formData.get("birth_date"),
+    doctor_name: formData.get("doctor_name"),
     full_name: formData.get("full_name"),
     gender: formData.get("gender") || "",
+    hospital_name: formData.get("hospital_name"),
     locale,
   });
 
@@ -334,8 +340,10 @@ export async function updatePatientProfileAction(
   const { error } = await patientsTable
     .update({
       birth_date: emptyToNull(parsed.data.birth_date),
+      doctor_name: emptyToNull(parsed.data.doctor_name),
       full_name: parsed.data.full_name,
       gender: parsed.data.gender || null,
+      hospital_name: emptyToNull(parsed.data.hospital_name),
     })
     .eq("id", patient.id)
     .eq("user_id", user.id);

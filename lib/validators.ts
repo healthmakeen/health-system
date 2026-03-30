@@ -30,15 +30,19 @@ export const passwordSettingsSchema = z
 
 export const patientSchema = z.object({
   birth_date: z.string().trim().optional(),
+  doctor_name: z.string().trim().max(120).optional(),
   full_name: z.string().trim().min(2).max(120),
   gender: z.enum(["female", "male"]).optional(),
+  hospital_name: z.string().trim().max(120).optional(),
   locale: localeSchema,
 });
 
 export const patientSettingsSchema = z.object({
   birth_date: z.string().trim().optional(),
+  doctor_name: z.string().trim().max(120).optional(),
   full_name: z.string().trim().min(2).max(120),
   gender: z.enum(["female", "male"]).or(z.literal("")).optional(),
+  hospital_name: z.string().trim().max(120).optional(),
   locale: localeSchema,
 });
 

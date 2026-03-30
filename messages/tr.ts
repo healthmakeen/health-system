@@ -156,7 +156,9 @@ const trMessages = {
     birthDate: "Doğum tarihi",
     description:
       "Günlük ölçümleri düzenli tutmak için hasta profilini bir kez oluşturun.",
+    doctorName: "Doktor adı",
     gender: "Cinsiyet",
+    hospitalName: "Hastane adı",
     title: "Hasta Kurulumu",
   },
   reports: {

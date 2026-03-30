@@ -157,7 +157,9 @@ const enMessages = {
     birthDate: "Birth date",
     description:
       "Set up the patient profile once so daily readings stay organized.",
+    doctorName: "Doctor name",
     gender: "Gender",
+    hospitalName: "Hospital name",
     title: "Patient Setup",
   },
   reports: {

@@ -153,7 +153,9 @@ const arMessages = {
   patientSetup: {
     birthDate: "تاريخ الميلاد",
     description: "أدخل بيانات المريض مرة واحدة لتنظيم القراءات اليومية.",
+    doctorName: "اسم الطبيب",
     gender: "الجنس",
+    hospitalName: "اسم المستشفى",
     title: "إعداد المريض",
   },
   reports: {

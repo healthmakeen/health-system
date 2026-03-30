@@ -39,8 +39,10 @@ export type SettingsFormValues = {
 
 export type PatientSettingsFormValues = {
   birth_date: string;
+  doctor_name: string;
   full_name: string;
   gender: "" | Gender;
+  hospital_name: string;
 };
 
 export type MedicationFormValues = {
