@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+:root {
+  --font-manrope: "Manrope";
+  --font-tajawal: "Tajawal";
+  --color-bg: #f4f7f7;
+  --color-bg-accent: #e7f1ef;
+  --color-surface: #ffffff;
+  --color-surface-strong: #f9fbfb;
+  --color-border: #d8e4e1;
+  --color-border-strong: #afc5bf;
+  --color-text: #173234;
+  --color-text-soft: #547172;
+  --color-primary: #116466;
+  --color-primary-strong: #0d4d4f;
+  --color-primary-soft: #d8ece7;
+  --color-danger: #b93a3f;
+  --color-danger-soft: #fdeced;
+  --color-success: #23785f;
+  --color-success-soft: #e5f5ef;
+  --shadow-card: 0 12px 30px rgba(17, 100, 102, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --font-sans: var(--font-manrope);
+  --font-arabic: var(--font-tajawal);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(17, 100, 102, 0.08), transparent 32%),
+    linear-gradient(180deg, #eef6f4 0%, var(--color-bg) 25%, var(--color-bg) 100%);
+  color: var(--color-text);
+  font-family: var(--font-manrope), sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: rgba(17, 100, 102, 0.18);
+}
+
+.font-arabic {
+  font-family: var(--font-tajawal), sans-serif;
+}
+
+.safe-px {
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+.safe-pb {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.card-surface {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+.field-shell {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-strong);
+}
+
+.field-shell:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(17, 100, 102, 0.12);
+}
+
+.status-stable {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.status-needs_attention {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+.form-error {
+  color: var(--color-danger);
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

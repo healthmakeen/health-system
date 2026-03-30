@@ -1,0 +1,127 @@
+const trMessages = {
+  auth: {
+    helper: "Bakım veren için basit ve güvenli giriş.",
+    login: "Giriş Yap",
+    logout: "Çıkış Yap",
+    password: "Şifre",
+    signup: "Hesap Oluştur",
+    subtitle:
+      "Hasta takip paneline erişmek için e-posta ve şifrenizi kullanın.",
+    title: "Tekrar hoş geldiniz",
+  },
+  common: {
+    addEntry: "Kayıt Ekle",
+    back: "Geri",
+    cancel: "İptal",
+    close: "Kapat",
+    createdAt: "Oluşturulma zamanı",
+    dashboard: "Panel",
+    delete: "Sil",
+    details: "Detaylar",
+    edit: "Düzenle",
+    email: "E-posta",
+    fullName: "Ad soyad",
+    loading: "Yükleniyor...",
+    notes: "Notlar",
+    save: "Kaydet",
+  },
+  dashboard: {
+    addFirstEntry: "İlk kaydı ekle",
+    emptyDescription: "Günlük ölçümler kaydedildikten sonra burada görünür.",
+    emptyTitle: "Henüz kayıt yok",
+    latestEntries: "Günlük ölçümler",
+    patientSummary: "Hasta özeti",
+    today: "Bugün",
+  },
+  details: {
+    abdomen: "Karın",
+    bloodPressure: "Tansiyon",
+    breathing: "Solunum",
+    date: "Tarih",
+    day: "Gün",
+    legSwelling: "Bacak şişliği",
+    pulse: "Nabız",
+    status: "Durum",
+    weight: "Kilo",
+  },
+  entry: {
+    abdomenStatus: "Karın durumu",
+    addTitle: "Günlük kayıt ekle",
+    breathingStatus: "Solunum durumu",
+    dayName: "Gün",
+    deleteConfirm: "Bu kayıt silinsin mi?",
+    deleteHelp: "Bu işlem geri alınamaz.",
+    diastolic: "Diyastolik",
+    editTitle: "Kaydı düzenle",
+    entryDate: "Kayıt tarihi",
+    legSwelling: "Bacak şişliği",
+    notesPlaceholder: "Bugün için önemli notları ekleyin",
+    pulse: "Nabız",
+    saveDescription:
+      "Bugünkü ölçüm için yalnızca gerekli alanları doldurun.",
+    systolic: "Sistolik",
+    weight: "Kilo",
+  },
+  errors: {
+    generic: "Bir sorun oluştu. Lütfen tekrar deneyin.",
+    invalidCredentials: "E-posta veya şifre hatalı.",
+    invalidEmail: "Geçerli bir e-posta girin.",
+    passwordLength: "Şifre en az 6 karakter olmalıdır.",
+    required: "Bu alan zorunludur.",
+  },
+  form: {
+    optional: "İsteğe bağlı",
+    required: "Zorunlu",
+  },
+  gender: {
+    female: "Kadın",
+    male: "Erkek",
+  },
+  labels: {
+    accountCreated:
+      "Hesap oluşturuldu. E-posta doğrulaması açıksa lütfen giriş yapmadan önce e-postanızı doğrulayın.",
+    accountReady: "Hesabınız hazır.",
+    locale: "Dil",
+    statusNeedsAttention: "Takip Gerekli",
+    statusStable: "Stabil",
+  },
+  options: {
+    abdomen: {
+      distended: "Şişkin",
+      normal: "Normal",
+      tight: "Gergin",
+    },
+    breathing: {
+      difficult: "Zor",
+      normal: "Normal",
+    },
+    legSwelling: {
+      mild: "Hafif",
+      none: "Yok",
+      yes: "Var",
+    },
+  },
+  patientSetup: {
+    birthDate: "Doğum tarihi",
+    description:
+      "Günlük ölçümleri düzenli tutmak için hasta profilini bir kez oluşturun.",
+    gender: "Cinsiyet",
+    title: "Hasta Kurulumu",
+  },
+  validations: {
+    bloodPressureRelation: "Diyastolik değer sistolik değerden düşük olmalıdır.",
+    dateRequired: "Bir tarih seçin.",
+    numberRange: "Lütfen geçerli bir değer girin.",
+  },
+  weekdays: {
+    friday: "Cuma",
+    monday: "Pazartesi",
+    saturday: "Cumartesi",
+    sunday: "Pazar",
+    thursday: "Perşembe",
+    tuesday: "Salı",
+    wednesday: "Çarşamba",
+  },
+} as const;
+
+export default trMessages;

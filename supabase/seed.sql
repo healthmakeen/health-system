@@ -1,0 +1,1 @@
+-- Seed data is intentionally empty for this production-ready MVP scaffold.

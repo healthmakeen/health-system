@@ -1,0 +1,128 @@
+const enMessages = {
+  auth: {
+    helper: "Simple and secure caregiver sign in.",
+    login: "Login",
+    logout: "Logout",
+    password: "Password",
+    signup: "Create account",
+    subtitle:
+      "Use your email and password to access the patient follow-up dashboard.",
+    title: "Welcome back",
+  },
+  common: {
+    addEntry: "Add Entry",
+    back: "Back",
+    cancel: "Cancel",
+    close: "Close",
+    createdAt: "Created at",
+    dashboard: "Dashboard",
+    delete: "Delete",
+    details: "Details",
+    edit: "Edit",
+    email: "Email",
+    fullName: "Full name",
+    loading: "Loading...",
+    notes: "Notes",
+    save: "Save",
+  },
+  dashboard: {
+    addFirstEntry: "Add the first entry",
+    emptyDescription:
+      "Daily readings will appear here after you save them.",
+    emptyTitle: "No entries yet",
+    latestEntries: "Daily readings",
+    patientSummary: "Patient overview",
+    today: "Today",
+  },
+  details: {
+    abdomen: "Abdomen",
+    bloodPressure: "Blood Pressure",
+    breathing: "Breathing",
+    date: "Date",
+    day: "Day",
+    legSwelling: "Leg Swelling",
+    pulse: "Pulse",
+    status: "Status",
+    weight: "Weight",
+  },
+  entry: {
+    abdomenStatus: "Abdomen status",
+    addTitle: "Add daily entry",
+    breathingStatus: "Breathing status",
+    dayName: "Day",
+    deleteConfirm: "Delete this entry?",
+    deleteHelp: "This action cannot be undone.",
+    diastolic: "Diastolic",
+    editTitle: "Edit entry",
+    entryDate: "Entry date",
+    legSwelling: "Leg swelling",
+    notesPlaceholder: "Add any important notes for today",
+    pulse: "Pulse",
+    saveDescription:
+      "Keep the form simple and fill only what is needed for today's reading.",
+    systolic: "Systolic",
+    weight: "Weight",
+  },
+  errors: {
+    generic: "Something went wrong. Please try again.",
+    invalidCredentials: "Invalid email or password.",
+    invalidEmail: "Enter a valid email address.",
+    passwordLength: "Password must be at least 6 characters.",
+    required: "This field is required.",
+  },
+  form: {
+    optional: "Optional",
+    required: "Required",
+  },
+  gender: {
+    female: "Female",
+    male: "Male",
+  },
+  labels: {
+    accountCreated:
+      "Account created. If email confirmation is enabled, please confirm your email before logging in.",
+    accountReady: "Your account is ready.",
+    locale: "Language",
+    statusStable: "Stable",
+    statusNeedsAttention: "Needs Attention",
+  },
+  options: {
+    abdomen: {
+      distended: "Distended",
+      normal: "Normal",
+      tight: "Tight",
+    },
+    breathing: {
+      difficult: "Difficult",
+      normal: "Normal",
+    },
+    legSwelling: {
+      mild: "Mild",
+      none: "None",
+      yes: "Yes",
+    },
+  },
+  patientSetup: {
+    birthDate: "Birth date",
+    description:
+      "Set up the patient profile once so daily readings stay organized.",
+    gender: "Gender",
+    title: "Patient Setup",
+  },
+  validations: {
+    bloodPressureRelation: "Diastolic pressure should be lower than systolic.",
+    dateRequired: "Choose a date.",
+    numberRange: "Please enter a valid value.",
+  },
+  weekdays: {
+    friday: "Friday",
+    monday: "Monday",
+    saturday: "Saturday",
+    sunday: "Sunday",
+    thursday: "Thursday",
+    tuesday: "Tuesday",
+    wednesday: "Wednesday",
+  },
+} as const;
+
+export default enMessages;
