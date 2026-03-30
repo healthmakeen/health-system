@@ -46,6 +46,7 @@ export const medicationSchema = z.object({
   description: z.string().trim().max(240).optional(),
   locale: localeSchema,
   name: z.string().trim().min(2).max(120),
+  reminder_time: z.string().trim().optional(),
   tablets_per_day: z.coerce.number().int().min(1).max(20),
 });
 

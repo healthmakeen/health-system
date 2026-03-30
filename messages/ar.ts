@@ -33,6 +33,7 @@ const arMessages = {
     reports: "التقارير",
   },
   medications: {
+    addButton: "إضافة دواء",
     addTitle: "إضافة دواء",
     description: "الوصف",
     descriptionPlaceholder: "ملاحظة قصيرة عن هذا الدواء أو وقت استخدامه",
@@ -43,9 +44,13 @@ const arMessages = {
     listTitle: "الأدوية الحالية",
     name: "اسم الدواء",
     noDescription: "لا يوجد وصف مضاف.",
+    pageDescription: "احتفظ بجميع الأدوية الحالية في قائمة بسيطة واحدة.",
+    reminderHelp: "نحفظ وقت الدواء الآن حتى نكون جاهزين لإضافة التذكيرات لاحقًا.",
+    reminderTime: "وقت الدواء",
     tabletsDailyLabel: "{count} حبات يوميًا",
     tabletsPerDay: "عدد الحبات يوميًا",
     tabletsRange: "يرجى إدخال عدد من 1 إلى 20 حبة يوميًا.",
+    timeLabel: "الوقت: {time}",
     title: "الأدوية",
   },
   dashboard: {

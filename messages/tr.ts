@@ -34,6 +34,7 @@ const trMessages = {
     reports: "Raporlar",
   },
   medications: {
+    addButton: "İlaç ekle",
     addTitle: "İlaç ekle",
     description: "Açıklama",
     descriptionPlaceholder: "Bu ilaç hakkında kısa not veya ne zaman kullanıldığı",
@@ -44,9 +45,13 @@ const trMessages = {
     listTitle: "Mevcut ilaçlar",
     name: "İlaç adı",
     noDescription: "Açıklama eklenmedi.",
+    pageDescription: "Tüm mevcut ilaçları tek sade listede tutun.",
+    reminderHelp: "Şimdilik ilaç saatini kaydediyoruz; böylece daha sonra hatırlatıcı eklemek kolay olur.",
+    reminderTime: "İlaç saati",
     tabletsDailyLabel: "Günde {count} tablet",
     tabletsPerDay: "Günlük tablet sayısı",
     tabletsRange: "Lütfen günde 1 ile 20 arasında tablet girin.",
+    timeLabel: "Saat: {time}",
     title: "İlaçlar",
   },
   dashboard: {

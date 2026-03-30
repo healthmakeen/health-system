@@ -46,5 +46,6 @@ export type PatientSettingsFormValues = {
 export type MedicationFormValues = {
   description: string;
   name: string;
+  reminder_time: string;
   tablets_per_day: string;
 };

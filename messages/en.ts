@@ -34,6 +34,7 @@ const enMessages = {
     reports: "Reports",
   },
   medications: {
+    addButton: "Add medicine",
     addTitle: "Add medicine",
     description: "Description",
     descriptionPlaceholder: "Short note about this medicine or when it is used",
@@ -44,9 +45,13 @@ const enMessages = {
     listTitle: "Current medicines",
     name: "Medicine name",
     noDescription: "No description added.",
+    pageDescription: "Keep all current medicines in one simple list.",
+    reminderHelp: "This stores the preferred medicine time now and prepares us for reminders later.",
+    reminderTime: "Medicine time",
     tabletsDailyLabel: "{count} tablets daily",
     tabletsPerDay: "Tablets per day",
     tabletsRange: "Please enter between 1 and 20 tablets per day.",
+    timeLabel: "Time: {time}",
     title: "Medicines",
   },
   dashboard: {

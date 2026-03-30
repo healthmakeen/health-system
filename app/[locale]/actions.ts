@@ -499,6 +499,7 @@ export async function saveMedicationAction(
     description: formData.get("description"),
     locale,
     name: formData.get("name"),
+    reminder_time: formData.get("reminder_time"),
     tablets_per_day: formData.get("tablets_per_day"),
   });
 
@@ -534,6 +535,7 @@ export async function saveMedicationAction(
   const payload: Database["public"]["Tables"]["medications"]["Update"] = {
     description: emptyToNull(parsed.data.description),
     name: parsed.data.name,
+    reminder_time: emptyToNull(parsed.data.reminder_time),
     tablets_per_day: parsed.data.tablets_per_day,
   };
 

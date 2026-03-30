@@ -12,6 +12,7 @@ const initialState: FormState = { status: "idle" };
 const defaultValues: MedicationFormValues = {
   description: "",
   name: "",
+  reminder_time: "",
   tablets_per_day: "1",
 };
 
@@ -104,6 +105,26 @@ export function MedicationForm({
               {state.fieldErrors.tablets_per_day}
             </p>
           ) : null}
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-semibold">
+            {t("medications.reminderTime")}{" "}
+            <span className="text-[var(--color-text-soft)]">
+              ({t("form.optional")})
+            </span>
+          </label>
+          <div className="field-shell rounded-2xl px-4 py-3">
+            <input
+              type="time"
+              name="reminder_time"
+              defaultValue={initialValues.reminder_time}
+              className="w-full bg-transparent outline-none"
+            />
+          </div>
+          <p className="mt-2 text-sm text-[var(--color-text-soft)]">
+            {t("medications.reminderHelp")}
+          </p>
         </div>
       </div>
 

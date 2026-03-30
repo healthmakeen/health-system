@@ -28,6 +28,12 @@ export function MedicationList({
         <p className="mt-2 text-sm leading-6 text-[var(--color-text-soft)]">
           {translate(messages, "medications.emptyDescription")}
         </p>
+        <Link
+          href={`${getLocalizedPath(locale, "/medications")}?new=1`}
+          className="mt-5 inline-flex min-h-12 items-center justify-center rounded-2xl bg-[var(--color-primary)] px-5 font-semibold !text-white"
+        >
+          {translate(messages, "medications.addButton")}
+        </Link>
       </div>
     );
   }
@@ -47,6 +53,14 @@ export function MedicationList({
                   String(medication.tablets_per_day),
                 )}
               </p>
+              {medication.reminder_time ? (
+                <p className="mt-1 text-xs font-medium text-[var(--color-text-soft)]">
+                  {translate(messages, "medications.timeLabel").replace(
+                    "{time}",
+                    medication.reminder_time.slice(0, 5),
+                  )}
+                </p>
+              ) : null}
             </div>
           </div>
 

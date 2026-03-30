@@ -78,6 +78,7 @@ export interface Database {
           id: string;
           name: string;
           patient_id: string;
+          reminder_time: string | null;
           tablets_per_day: number;
           updated_at: string;
         };
@@ -87,6 +88,7 @@ export interface Database {
           id?: string;
           name: string;
           patient_id: string;
+          reminder_time?: string | null;
           tablets_per_day: number;
           updated_at?: string;
         };
@@ -96,6 +98,7 @@ export interface Database {
           id?: string;
           name?: string;
           patient_id?: string;
+          reminder_time?: string | null;
           tablets_per_day?: number;
           updated_at?: string;
         };
