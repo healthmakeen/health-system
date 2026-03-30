@@ -71,6 +71,44 @@ export interface Database {
           },
         ];
       };
+      medications: {
+        Row: {
+          created_at: string;
+          description: string | null;
+          id: string;
+          name: string;
+          patient_id: string;
+          tablets_per_day: number;
+          updated_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          description?: string | null;
+          id?: string;
+          name: string;
+          patient_id: string;
+          tablets_per_day: number;
+          updated_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          description?: string | null;
+          id?: string;
+          name?: string;
+          patient_id?: string;
+          tablets_per_day?: number;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            columns: ["patient_id"];
+            foreignKeyName: "medications_patient_id_fkey";
+            isOneToOne: false;
+            referencedColumns: ["id"];
+            referencedRelation: "patients";
+          },
+        ];
+      };
       patients: {
         Row: {
           birth_date: string | null;

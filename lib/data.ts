@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import type { DailyEntry, Patient, Profile } from "@/types/app";
+import type { DailyEntry, Medication, Patient, Profile } from "@/types/app";
 
 function ignoreNotFoundError(error: { code?: string } | null) {
   return error?.code === "PGRST116";
@@ -59,6 +59,51 @@ export async function getEntriesForPatient(
     .order("created_at", { ascending: false });
 
   if (error) {
+    throw error;
+  }
+
+  return data;
+}
+
+export async function getMedicationsForPatient(
+  patientId: string,
+): Promise<Medication[]> {
+  const supabase = await createClient();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const medicationsTable = supabase.from("medications") as any;
+  const { data, error } = await medicationsTable
+    .select("*")
+    .eq("patient_id", patientId)
+    .order("name", { ascending: true })
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
+
+export async function getMedicationForUser(
+  userId: string,
+  medicationId: string,
+): Promise<Medication | null> {
+  const patient = await getPatientForUser(userId);
+
+  if (!patient) {
+    return null;
+  }
+
+  const supabase = await createClient();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const medicationsTable = supabase.from("medications") as any;
+  const { data, error } = await medicationsTable
+    .select("*")
+    .eq("patient_id", patient.id)
+    .eq("id", medicationId)
+    .maybeSingle();
+
+  if (error && !ignoreNotFoundError(error)) {
     throw error;
   }
 

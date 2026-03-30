@@ -35,6 +35,13 @@ export const patientSchema = z.object({
   locale: localeSchema,
 });
 
+export const medicationSchema = z.object({
+  description: z.string().trim().max(240).optional(),
+  locale: localeSchema,
+  name: z.string().trim().min(2).max(120),
+  tablets_per_day: z.coerce.number().int().min(1).max(20),
+});
+
 export const entrySchema = z
   .object({
     abdomen_status: z.enum(["distended", "normal", "tight"]),

@@ -18,6 +18,7 @@ import {
   authSchema,
   emptyToNull,
   entrySchema,
+  medicationSchema,
   passwordSettingsSchema,
   patientSchema,
   profileSettingsSchema,
@@ -419,4 +420,115 @@ export async function deleteEntryAction(formData: FormData) {
 
   revalidatePath(getLocalizedPath(locale, "/dashboard"));
   redirect(getLocalizedPath(locale, "/dashboard"));
+}
+
+export async function saveMedicationAction(
+  medicationId: string | null,
+  previousState: FormState = idleState,
+  formData: FormData,
+): Promise<FormState> {
+  void previousState;
+  const locale = getLocaleFromValue(formData.get("locale"));
+  const messages = getMessages(locale);
+  const parsed = medicationSchema.safeParse({
+    description: formData.get("description"),
+    locale,
+    name: formData.get("name"),
+    tablets_per_day: formData.get("tablets_per_day"),
+  });
+
+  if (!parsed.success) {
+    const fieldErrors: Record<string, string> = {};
+
+    for (const issue of parsed.error.issues) {
+      const field = String(issue.path[0] ?? "form");
+      fieldErrors[field] =
+        field === "tablets_per_day"
+          ? translate(messages, "medications.tabletsRange")
+          : translate(messages, "errors.required");
+    }
+
+    return buildErrorState(locale, fieldErrors);
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect(getLocalizedPath(locale, "/login"));
+  }
+
+  const patient = await getPatientForUser(user.id);
+
+  if (!patient) {
+    redirect(getLocalizedPath(locale, "/setup"));
+  }
+
+  const payload: Database["public"]["Tables"]["medications"]["Update"] = {
+    description: emptyToNull(parsed.data.description),
+    name: parsed.data.name,
+    tablets_per_day: parsed.data.tablets_per_day,
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const medicationsTable = supabase.from("medications") as any;
+  const error = medicationId
+    ? (
+        await medicationsTable
+          .update(payload)
+          .eq("id", medicationId)
+          .eq("patient_id", patient.id)
+      ).error
+    : (
+        await medicationsTable.insert({
+          ...payload,
+          patient_id: patient.id,
+        })
+      ).error;
+
+  if (error) {
+    return {
+      message: error.message,
+      status: "error",
+    };
+  }
+
+  revalidatePath(getLocalizedPath(locale, "/medications"));
+  redirect(getLocalizedPath(locale, "/medications"));
+}
+
+export async function deleteMedicationAction(formData: FormData) {
+  const locale = getLocaleFromValue(formData.get("locale"));
+  const medicationId = formData.get("medication_id");
+
+  if (typeof medicationId !== "string") {
+    redirect(getLocalizedPath(locale, "/medications"));
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect(getLocalizedPath(locale, "/login"));
+  }
+
+  const patient = await getPatientForUser(user.id);
+
+  if (!patient) {
+    redirect(getLocalizedPath(locale, "/setup"));
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const medicationsTable = supabase.from("medications") as any;
+  await medicationsTable
+    .delete()
+    .eq("id", medicationId)
+    .eq("patient_id", patient.id);
+
+  revalidatePath(getLocalizedPath(locale, "/medications"));
+  redirect(getLocalizedPath(locale, "/medications"));
 }

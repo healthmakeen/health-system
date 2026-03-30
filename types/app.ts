@@ -6,6 +6,7 @@ export type Direction = "ltr" | "rtl";
 export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
 export type Patient = Database["public"]["Tables"]["patients"]["Row"];
 export type DailyEntry = Database["public"]["Tables"]["daily_entries"]["Row"];
+export type Medication = Database["public"]["Tables"]["medications"]["Row"];
 
 export type Gender = NonNullable<Patient["gender"]>;
 export type BreathingStatus = DailyEntry["breathing_status"];
@@ -34,4 +35,10 @@ export type FormState = {
 export type SettingsFormValues = {
   full_name: string;
   locale: Locale;
+};
+
+export type MedicationFormValues = {
+  description: string;
+  name: string;
+  tablets_per_day: string;
 };

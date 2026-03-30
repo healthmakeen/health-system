@@ -22,6 +22,12 @@ export function BottomNav() {
       match: `/${locale}/dashboard`,
     },
     {
+      href: `/${locale}/medications`,
+      icon: <MedicineIcon />,
+      label: t("nav.meds"),
+      match: `/${locale}/medications`,
+    },
+    {
       href: `/${locale}/reports`,
       icon: <ReportsIcon />,
       label: t("nav.reports"),
@@ -37,7 +43,7 @@ export function BottomNav() {
 
   return (
     <div className="safe-px safe-pb pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto flex w-full max-w-md pb-4">
-      <nav className="pointer-events-auto card-surface grid w-full grid-cols-4 rounded-[28px] px-2 py-2 backdrop-blur-sm">
+      <nav className="pointer-events-auto card-surface grid w-full grid-cols-5 rounded-[28px] px-2 py-2 backdrop-blur-sm">
         {navItems.map((item) => {
           const active = pathname === item.href || pathname.startsWith(`${item.match}/`);
 
@@ -74,6 +80,15 @@ export function BottomNav() {
         </form>
       </nav>
     </div>
+  );
+}
+
+function MedicineIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={iconClassName} aria-hidden="true">
+      <path d="M8 6a4 4 0 0 1 8 0v12a4 4 0 0 1-8 0z" />
+      <path d="M8 12h8" />
+    </svg>
   );
 }
 
