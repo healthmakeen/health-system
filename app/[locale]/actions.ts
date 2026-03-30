@@ -107,6 +107,7 @@ export async function authAction(
 
   const supabase = await createClient();
   const { email, mode, password } = parsed.data;
+  const origin = await getRequestOrigin();
 
   if (mode === "login") {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -133,6 +134,7 @@ export async function authAction(
       data: {
         locale,
       },
+      emailRedirectTo: `${origin}/${locale}`,
     },
   });
 
@@ -181,10 +183,9 @@ export async function requestPasswordResetAction(
     });
   }
 
-  const origin = await getRequestOrigin();
   const supabase = await createClient();
   const { error } = await supabase.auth.resetPasswordForEmail(parsed.data.email, {
-    redirectTo: `${origin}${getLocalizedPath(locale, "/reset-password")}`,
+    redirectTo: `${origin}/${locale}`,
   });
 
   if (error) {

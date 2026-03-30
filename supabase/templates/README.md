@@ -35,6 +35,8 @@ Paste it in:
 Important placeholders used by Supabase:
 
 - `{{ .ConfirmationURL }}`
+- `{{ .TokenHash }}`
 - `{{ .Email }}`
+- `{{ .RedirectTo }}`
 
 Before testing, make sure Supabase `Site URL` and `Redirect URLs` are set to your live app URLs so the confirm button does not send users to localhost.
