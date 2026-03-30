@@ -21,6 +21,25 @@
   --shadow-card: 0 12px 30px rgba(17, 100, 102, 0.08);
 }
 
+[data-theme="female"] {
+  --color-bg: #fff6fa;
+  --color-bg-accent: #ffe4ef;
+  --color-surface: #ffffff;
+  --color-surface-strong: #fff8fb;
+  --color-border: #f1d2df;
+  --color-border-strong: #dca5ba;
+  --color-text: #4f2336;
+  --color-text-soft: #8f5c72;
+  --color-primary: #c14d7a;
+  --color-primary-strong: #a73f69;
+  --color-primary-soft: #ffe1ec;
+  --color-danger: #bf3b5c;
+  --color-danger-soft: #ffe8ee;
+  --color-success: #9f5575;
+  --color-success-soft: #fbe9f1;
+  --shadow-card: 0 12px 30px rgba(193, 77, 122, 0.12);
+}
+
 @theme inline {
   --color-background: var(--color-bg);
   --color-foreground: var(--color-text);
@@ -42,9 +61,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(17, 100, 102, 0.08), transparent 32%),
-    linear-gradient(180deg, #eef6f4 0%, var(--color-bg) 25%, var(--color-bg) 100%);
+  background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-manrope), sans-serif;
 }
@@ -80,6 +97,12 @@ button {
 
 .safe-pb {
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.theme-shell {
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 12%, transparent) 0%, transparent 34%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-primary-soft) 45%, white) 0%, var(--color-bg) 28%, var(--color-bg) 100%);
 }
 
 .card-surface {

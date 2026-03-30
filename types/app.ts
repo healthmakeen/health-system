@@ -37,6 +37,12 @@ export type SettingsFormValues = {
   locale: Locale;
 };
 
+export type PatientSettingsFormValues = {
+  birth_date: string;
+  full_name: string;
+  gender: "" | Gender;
+};
+
 export type MedicationFormValues = {
   description: string;
   name: string;

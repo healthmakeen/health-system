@@ -35,6 +35,13 @@ export const patientSchema = z.object({
   locale: localeSchema,
 });
 
+export const patientSettingsSchema = z.object({
+  birth_date: z.string().trim().optional(),
+  full_name: z.string().trim().min(2).max(120),
+  gender: z.enum(["female", "male"]).or(z.literal("")).optional(),
+  locale: localeSchema,
+});
+
 export const medicationSchema = z.object({
   description: z.string().trim().max(240).optional(),
   locale: localeSchema,

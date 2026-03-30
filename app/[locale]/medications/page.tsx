@@ -58,6 +58,7 @@ export default async function MedicationsPage({
       locale={locale}
       title={translate(messages, "medications.title")}
       description={patient.full_name}
+      themeGender={patient.gender}
     >
       <MedicationForm
         title={

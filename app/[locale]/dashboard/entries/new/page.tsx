@@ -36,6 +36,7 @@ export default async function NewEntryPage({
       locale={locale}
       title={translate(messages, "entry.addTitle")}
       description={patient.full_name}
+      themeGender={patient.gender}
     >
       <EntryForm
         title={translate(messages, "entry.addTitle")}

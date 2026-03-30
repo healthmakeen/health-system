@@ -56,6 +56,7 @@ export default async function ReportsPage({
       locale={locale}
       title={translate(messages, "reports.title")}
       description={translate(messages, "reports.description")}
+      themeGender={patient.gender}
     >
       <section className="grid grid-cols-2 gap-3">
         <SummaryCard

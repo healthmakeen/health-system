@@ -4,22 +4,28 @@ import { useActionState } from "react";
 
 import {
   updatePasswordAction,
+  updatePatientProfileAction,
   updateProfileAction,
 } from "@/app/[locale]/actions";
 import { useLocaleContext } from "@/components/locale-provider";
 import { SubmitButton } from "@/components/submit-button";
-import type { FormState, Locale, Profile } from "@/types/app";
+import type { FormState, Locale, Patient, Profile } from "@/types/app";
 
 const initialState: FormState = { status: "idle" };
 
 type SettingsFormProps = {
   locale: Locale;
+  patient: Patient | null;
   profile: Profile | null;
 };
 
-export function SettingsForm({ locale, profile }: SettingsFormProps) {
+export function SettingsForm({ locale, patient, profile }: SettingsFormProps) {
   const [profileState, profileAction] = useActionState(
     updateProfileAction,
+    initialState,
+  );
+  const [patientState, patientAction] = useActionState(
+    updatePatientProfileAction,
     initialState,
   );
   const [passwordState, passwordAction] = useActionState(
@@ -30,6 +36,74 @@ export function SettingsForm({ locale, profile }: SettingsFormProps) {
 
   return (
     <div className="space-y-5">
+      {patient ? (
+        <form action={patientAction} className="card-surface rounded-[28px] p-5">
+          <input type="hidden" name="locale" value={locale} />
+
+          <div className="mb-5">
+            <h2 className="text-xl font-bold text-[var(--color-text)]">
+              {t("settings.patientTitle")}
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-[var(--color-text-soft)]">
+              {t("settings.patientDescription")}
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <Field
+              defaultValue={patient.full_name}
+              error={patientState.fieldErrors?.full_name}
+              label={t("common.fullName")}
+              name="full_name"
+              type="text"
+            />
+
+            <div>
+              <label className="mb-2 block text-sm font-semibold">
+                {t("patientSetup.birthDate")}{" "}
+                <span className="text-[var(--color-text-soft)]">
+                  ({t("form.optional")})
+                </span>
+              </label>
+              <div className="field-shell rounded-2xl px-4 py-3">
+                <input
+                  type="date"
+                  name="birth_date"
+                  defaultValue={patient.birth_date ?? ""}
+                  className="w-full bg-transparent outline-none"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="mb-2 block text-sm font-semibold">
+                {t("patientSetup.gender")}{" "}
+                <span className="text-[var(--color-text-soft)]">
+                  ({t("form.optional")})
+                </span>
+              </label>
+              <div className="field-shell rounded-2xl px-4 py-3">
+                <select
+                  name="gender"
+                  defaultValue={patient.gender ?? ""}
+                  className="w-full bg-transparent outline-none"
+                >
+                  <option value="">{t("form.optional")}</option>
+                  <option value="male">{t("gender.male")}</option>
+                  <option value="female">{t("gender.female")}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <FormFeedback state={patientState} successKey="settings.patientSaved" />
+
+          <SubmitButton className="mt-5 w-full" pendingLabel={t("common.loading")}>
+            {t("settings.savePatient")}
+          </SubmitButton>
+        </form>
+      ) : null}
+
       <form action={profileAction} className="card-surface rounded-[28px] p-5">
         <input type="hidden" name="locale" value={locale} />
 

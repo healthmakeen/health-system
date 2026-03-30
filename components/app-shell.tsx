@@ -7,12 +7,13 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { APP_VERSION } from "@/lib/app-config";
 import { SubmitButton } from "@/components/submit-button";
 import { getLocalizedPath, getMessages, translate } from "@/lib/locales";
-import type { Locale } from "@/types/app";
+import type { Gender, Locale } from "@/types/app";
 
 type AppShellProps = {
   children: ReactNode;
   description?: string;
   locale: Locale;
+  themeGender?: Gender | null;
   title: string;
 };
 
@@ -20,12 +21,16 @@ export function AppShell({
   children,
   description,
   locale,
+  themeGender,
   title,
 }: AppShellProps) {
   const messages = getMessages(locale);
 
   return (
-    <main className="safe-px safe-pb mx-auto flex min-h-screen w-full max-w-md flex-col py-5">
+    <main
+      data-theme={themeGender === "female" ? "female" : "default"}
+      className="theme-shell safe-px safe-pb mx-auto flex min-h-screen w-full max-w-md flex-col py-5"
+    >
       <header className="mb-5 flex flex-col gap-4">
         <div className="flex items-start justify-between gap-3">
           <div>

@@ -2,7 +2,11 @@ import { redirect } from "next/navigation";
 
 import { AppShell } from "@/components/app-shell";
 import { SettingsForm } from "@/components/settings-form";
-import { getAuthenticatedUser, getProfileByUserId } from "@/lib/data";
+import {
+  getAuthenticatedUser,
+  getPatientForUser,
+  getProfileByUserId,
+} from "@/lib/data";
 import { getMessages, getLocalizedPath, isLocale, translate } from "@/lib/locales";
 
 export default async function SettingsPage({
@@ -23,15 +27,19 @@ export default async function SettingsPage({
   }
 
   const messages = getMessages(locale);
-  const profile = await getProfileByUserId(user.id);
+  const [patient, profile] = await Promise.all([
+    getPatientForUser(user.id),
+    getProfileByUserId(user.id),
+  ]);
 
   return (
     <AppShell
       locale={locale}
       title={translate(messages, "settings.title")}
       description={translate(messages, "settings.description")}
+      themeGender={patient?.gender ?? null}
     >
-      <SettingsForm locale={locale} profile={profile} />
+      <SettingsForm locale={locale} patient={patient} profile={profile} />
     </AppShell>
   );
 }

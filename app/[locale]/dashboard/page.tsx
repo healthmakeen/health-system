@@ -54,6 +54,7 @@ export default async function DashboardPage({
       locale={locale}
       title={translate(messages, "common.dashboard")}
       description={formatLongDate(new Date(), locale)}
+      themeGender={patient.gender}
     >
       <section className="card-surface rounded-[28px] p-5">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-text-soft)]">

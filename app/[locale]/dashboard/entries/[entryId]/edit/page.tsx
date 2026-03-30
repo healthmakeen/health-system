@@ -43,6 +43,7 @@ export default async function EditEntryPage({
       locale={locale}
       title={translate(messages, "entry.editTitle")}
       description={patient.full_name}
+      themeGender={patient.gender}
     >
       <EntryForm
         title={translate(messages, "entry.editTitle")}

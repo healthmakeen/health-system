@@ -21,6 +21,7 @@ import {
   medicationSchema,
   passwordSettingsSchema,
   patientSchema,
+  patientSettingsSchema,
   profileSettingsSchema,
 } from "@/lib/validators";
 import type { Database } from "@/types/database";
@@ -286,6 +287,70 @@ export async function updatePasswordAction(
       status: "error",
     };
   }
+
+  return {
+    status: "success",
+  };
+}
+
+export async function updatePatientProfileAction(
+  previousState: FormState = idleState,
+  formData: FormData,
+): Promise<FormState> {
+  void previousState;
+  const locale = getLocaleFromValue(formData.get("locale"));
+  const messages = getMessages(locale);
+
+  const parsed = patientSettingsSchema.safeParse({
+    birth_date: formData.get("birth_date"),
+    full_name: formData.get("full_name"),
+    gender: formData.get("gender") || "",
+    locale,
+  });
+
+  if (!parsed.success) {
+    return buildErrorState(locale, {
+      full_name: translate(messages, "errors.required"),
+    });
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect(getLocalizedPath(locale, "/login"));
+  }
+
+  const patient = await getPatientForUser(user.id);
+
+  if (!patient) {
+    redirect(getLocalizedPath(locale, "/setup"));
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const patientsTable = supabase.from("patients") as any;
+  const { error } = await patientsTable
+    .update({
+      birth_date: emptyToNull(parsed.data.birth_date),
+      full_name: parsed.data.full_name,
+      gender: parsed.data.gender || null,
+    })
+    .eq("id", patient.id)
+    .eq("user_id", user.id);
+
+  if (error) {
+    return {
+      message: error.message,
+      status: "error",
+    };
+  }
+
+  revalidatePath(getLocalizedPath(locale, "/dashboard"));
+  revalidatePath(getLocalizedPath(locale, "/settings"));
+  revalidatePath(getLocalizedPath(locale, "/reports"));
+  revalidatePath(getLocalizedPath(locale, "/medications"));
 
   return {
     status: "success",
