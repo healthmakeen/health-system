@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { useRef, useState } from "react";
 
 import { deleteEntryAction } from "@/app/[locale]/actions";
+import { ConfirmDialog } from "@/components/confirm-dialog";
 import { StatusBadge } from "@/components/status-badge";
 import { formatDate, formatDateTime, getLocalizedPath, getWeekdayKey } from "@/lib/locales";
 import type { DailyEntry, Locale } from "@/types/app";
@@ -20,11 +22,14 @@ export function EntryDetailsModal({
   onClose,
   translate,
 }: EntryDetailsModalProps) {
+  const deleteFormRef = useRef<HTMLFormElement>(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const weekdayLabel = translate(`weekdays.${getWeekdayKey(entry.entry_date)}`);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/45 p-3 sm:items-center">
-      <div className="card-surface safe-pb w-full max-w-md rounded-[32px] p-5">
+    <>
+      <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/45 p-3 sm:items-center">
+        <div className="card-surface safe-pb w-full max-w-md rounded-[32px] p-5">
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
             <h3 className="text-2xl font-bold text-[var(--color-text)]">
@@ -89,31 +94,38 @@ export function EntryDetailsModal({
           {translate("common.createdAt")}: {formatDateTime(entry.created_at, locale)}
         </p>
 
-        <div className="mt-5 flex gap-3">
-          <Link
-            href={getLocalizedPath(locale, `/dashboard/entries/${entry.id}/edit`)}
-            className="flex min-h-12 flex-1 items-center justify-center rounded-2xl border border-[var(--color-border)] bg-white px-4 font-semibold text-[var(--color-text)]"
-          >
-            {translate("common.edit")}
-          </Link>
-          <form action={deleteEntryAction} className="flex-1">
-            <input type="hidden" name="locale" value={locale} />
-            <input type="hidden" name="entry_id" value={entry.id} />
-            <button
-              type="submit"
-              onClick={(event) => {
-                if (!window.confirm(translate("entry.deleteConfirm"))) {
-                  event.preventDefault();
-                }
-              }}
-              className="min-h-12 w-full rounded-2xl bg-[var(--color-danger)] px-4 font-semibold text-white"
+          <div className="mt-5 flex gap-3">
+            <Link
+              href={getLocalizedPath(locale, `/dashboard/entries/${entry.id}/edit`)}
+              className="flex min-h-12 flex-1 items-center justify-center rounded-2xl border border-[var(--color-border)] bg-white px-4 font-semibold text-[var(--color-text)]"
             >
-              {translate("common.delete")}
-            </button>
-          </form>
+              {translate("common.edit")}
+            </Link>
+            <form ref={deleteFormRef} action={deleteEntryAction} className="flex-1">
+              <input type="hidden" name="locale" value={locale} />
+              <input type="hidden" name="entry_id" value={entry.id} />
+              <button
+                type="button"
+                onClick={() => setShowDeleteConfirm(true)}
+                className="min-h-12 w-full rounded-2xl bg-[var(--color-danger)] px-4 font-semibold text-white"
+              >
+                {translate("common.delete")}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+      {showDeleteConfirm ? (
+        <ConfirmDialog
+          cancelLabel={translate("common.cancel")}
+          confirmLabel={translate("common.delete")}
+          description={translate("entry.deleteHelp")}
+          onCancel={() => setShowDeleteConfirm(false)}
+          onConfirm={() => deleteFormRef.current?.requestSubmit()}
+          title={translate("entry.deleteConfirm")}
+        />
+      ) : null}
+    </>
   );
 }
 

@@ -38,6 +38,8 @@ const enMessages = {
     addTitle: "Add medicine",
     description: "Description",
     descriptionPlaceholder: "Short note about this medicine or when it is used",
+    deleteConfirm: "Delete this medicine?",
+    deleteHelp: "This medicine will be removed from the list.",
     editTitle: "Edit medicine",
     emptyDescription: "Add the patient medicines so the caregiver can see the full situation in one place.",
     emptyTitle: "No medicines yet",

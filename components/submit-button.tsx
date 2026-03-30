@@ -7,21 +7,26 @@ import { cn } from "@/lib/utils";
 type SubmitButtonProps = {
   children: React.ReactNode;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   pendingLabel?: string;
+  type?: "button" | "submit";
   variant?: "primary" | "secondary";
 };
 
 export function SubmitButton({
   children,
   className,
+  onClick,
   pendingLabel,
+  type = "submit",
   variant = "primary",
 }: SubmitButtonProps) {
   const { pending } = useFormStatus();
 
   return (
     <button
-      type="submit"
+      type={type}
+      onClick={onClick}
       disabled={pending}
       className={cn(
         "min-h-13 rounded-2xl px-5 text-base font-semibold transition disabled:opacity-60",

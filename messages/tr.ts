@@ -38,6 +38,8 @@ const trMessages = {
     addTitle: "İlaç ekle",
     description: "Açıklama",
     descriptionPlaceholder: "Bu ilaç hakkında kısa not veya ne zaman kullanıldığı",
+    deleteConfirm: "Bu ilaç silinsin mi?",
+    deleteHelp: "Bu ilaç listeden kaldırılacak.",
     editTitle: "İlacı düzenle",
     emptyDescription: "Bakım verenin tüm durumu tek yerde görmesi için hastanın ilaçlarını ekleyin.",
     emptyTitle: "Henüz ilaç yok",

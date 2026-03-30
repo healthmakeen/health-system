@@ -37,6 +37,8 @@ const arMessages = {
     addTitle: "إضافة دواء",
     description: "الوصف",
     descriptionPlaceholder: "ملاحظة قصيرة عن هذا الدواء أو وقت استخدامه",
+    deleteConfirm: "هل تريد حذف هذا الدواء؟",
+    deleteHelp: "سيتم حذف هذا الدواء من القائمة.",
     editTitle: "تعديل الدواء",
     emptyDescription: "أضف أدوية المريض حتى يرى مقدم الرعاية الحالة كاملة في مكان واحد.",
     emptyTitle: "لا توجد أدوية بعد",
