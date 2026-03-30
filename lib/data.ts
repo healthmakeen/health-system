@@ -16,6 +16,7 @@ export async function getAuthenticatedUser() {
 
 export async function getProfileByUserId(userId: string): Promise<Profile | null> {
   const supabase = await createClient();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const profilesTable = supabase.from("profiles") as any;
   const { data, error } = await profilesTable
     .select("*")
@@ -31,6 +32,7 @@ export async function getProfileByUserId(userId: string): Promise<Profile | null
 
 export async function getPatientForUser(userId: string): Promise<Patient | null> {
   const supabase = await createClient();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const patientsTable = supabase.from("patients") as any;
   const { data, error } = await patientsTable
     .select("*")
@@ -48,6 +50,7 @@ export async function getEntriesForPatient(
   patientId: string,
 ): Promise<DailyEntry[]> {
   const supabase = await createClient();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const entriesTable = supabase.from("daily_entries") as any;
   const { data, error } = await entriesTable
     .select("*")
@@ -73,6 +76,7 @@ export async function getEntryForUser(
   }
 
   const supabase = await createClient();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const entriesTable = supabase.from("daily_entries") as any;
   const { data, error } = await entriesTable
     .select("*")

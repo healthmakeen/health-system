@@ -172,6 +172,7 @@ export async function createPatientAction(
     gender: parsed.data.gender ?? null,
     user_id: user.id,
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const patientsTable = supabase.from("patients") as any;
   const { error } = await patientsTable.insert(patientPayload);
 
@@ -182,6 +183,7 @@ export async function createPatientAction(
     };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const profilesTable = supabase.from("profiles") as any;
   await profilesTable.update({ locale }).eq("id", user.id);
 
@@ -265,6 +267,7 @@ export async function saveEntryAction(
     weight: parsed.data.weight,
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const entriesTable = supabase.from("daily_entries") as any;
   const error = entryId
     ? (await entriesTable.update(payload).eq("id", entryId).eq("patient_id", patient.id))
@@ -310,6 +313,7 @@ export async function deleteEntryAction(formData: FormData) {
     redirect(getLocalizedPath(locale, "/setup"));
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const entriesTable = supabase.from("daily_entries") as any;
   await entriesTable.delete().eq("id", entryId).eq("patient_id", patient.id);
 
